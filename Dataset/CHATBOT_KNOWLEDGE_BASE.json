@@ -1,0 +1,447 @@
+[
+  {
+    "Institute": "IIM Ahmedabad",
+    "Shortlisting_Methodology": "Domestic shortlist through CAT + Academic Rating composite; separate overseas/GMAT route",
+    "Key_Factors": [
+      "CAT cutoffs: CAT ≥95 overall; ≥85 sectional for General/EWS; category and PwD values also published separately",
+      "GMAT / GMAT Focus overseas route: GMAT Focus total 665; previous GMAT total 720; section minima published",
+      "Shortlist formula: Composite Score",
+      "Academic Rating methodology: AR = A+B+C+D+E",
+      "Work experience: 0.20×(months−11), capped at 5",
+      "Gender diversity: male = 0; all others = 3",
+      "Academic thresholds: Stream-wise P threshold and 80th-percentile bachelor threshold by category/group"
+    ],
+    "Academic_Evaluation": "Academic Rating methodology: AR = A+B+C+D+E; Academic thresholds: Stream-wise P threshold and 80th-percentile bachelor threshold by category/group",
+    "Work_Experience_Evaluation": "Work experience: 0.20×(months−11), capped at 5",
+    "Diversity_Evaluation": "Gender diversity: male = 0; all others = 3",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Production values admit only verified official formula, AR, CAT cutoffs, work-experience, gender diversity, and academic-threshold mechanics."
+    ],
+    "Formula_Summary": "CS = 0.35×(AR/38) + 0.65×(CAT/204)",
+    "Confidence": "High"
+  },
+  {
+    "Institute": "IIM Bangalore",
+    "Shortlisting_Methodology": "Pre-PI composite score with CAT, academics, work experience/professional course, gender, and top-performer bypass",
+    "Key_Factors": [
+      "Pre-PI score weights: CAT 55 + 10th 10 + 12th 10 + Bachelor 10 + WorkEx/ProfCourse 10 + Gender 5",
+      "CAT sectional composition: 19 / 21 / 15",
+      "Work-experience formula: 10x/36 for x<36; 10 at x≥36",
+      "Professional-course interaction: Higher of work-ex score or professional-course score",
+      "Standardization formula: Max[0,min{wt, wt/2 + ((val-mean)/sd)×wt/6}]",
+      "Direct PI bypass: Top-10 performers in certain categories automatically qualify for PI"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Work-experience formula: 10x/36 for x<36; 10 at x≥36",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Professional-course interaction: Higher of work-ex score or professional-course score",
+    "Important_Exceptions": [
+      "Current-cycle numeric CAT cutoffs were not admitted because the report found prior-cycle carry-forward."
+    ],
+    "Formula_Summary": "Pre-PI = CAT 55 + 10th 10 + 12th 10 + Bachelor 10 + WorkEx/ProfCourse 10 + Gender 5",
+    "Confidence": "Medium"
+  },
+  {
+    "Institute": "IIM Calcutta",
+    "Shortlisting_Methodology": "Stage-I CAT minimums followed by Stage-II shortlist score",
+    "Key_Factors": [
+      "Stage-I CAT cutoffs: Open 85/80/80/75 and category-wise minima; actual shortlist cutoffs may be higher",
+      "Stage-II shortlist formula: CAT 56 + Class 10 10 + Class 12 15 + Gender 4",
+      "Class 10 brackets: 10/8/6/4/2/0",
+      "Class 12 brackets: 15/12/9/6/3/0",
+      "Gender diversity: 4 marks for female/transgender",
+      "Graduation and work experience in Stage-1: 0% weight in shortlist stage"
+    ],
+    "Academic_Evaluation": "Class 10 brackets: 10/8/6/4/2/0; Class 12 brackets: 15/12/9/6/3/0",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Gender diversity: 4 marks for female/transgender",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Graduation and work experience are verified as 0% in the shortlist stage."
+    ],
+    "Formula_Summary": "Stage-II = CAT 56 + Class 10 10 + Class 12 15 + Gender 4",
+    "Confidence": "High"
+  },
+  {
+    "Institute": "IIM Lucknow",
+    "Shortlisting_Methodology": "Composite shortlist score using scaled CAT, Class 12, graduation, work experience, and diversity factors",
+    "Key_Factors": [
+      "Cutoffs: General MBA 90 overall / 85 sectional; separate MBA-ABM and MBA-SM cutoffs are published",
+      "Composite shortlist formula: 0.60 CS + 0.10 12M + 0.10 GM + 0.10 WE + 0.05 DFa + 0.05 DFb",
+      "CS formula: Scaled CAT = candidate CAT / highest CAT × 60",
+      "Class 12 percentile formula: 12M from five-year pooled board/discipline percentile",
+      "Graduation normalization: Discipline-wise normalized GM",
+      "Work-experience treatment: MBA formula from x>6; ABM zero; SM requires x>24",
+      "Diversity factors: DFa 5 and DFb 5"
+    ],
+    "Academic_Evaluation": "Class 12 percentile formula: 12M from five-year pooled board/discipline percentile; Graduation normalization: Discipline-wise normalized GM",
+    "Work_Experience_Evaluation": "Work-experience treatment: MBA formula from x>6; ABM zero; SM requires x>24",
+    "Diversity_Evaluation": "Diversity factors: DFa 5 and DFb 5",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Program-specific MBA/MBA-ABM/MBA-SM nuances retained where explicitly verified."
+    ],
+    "Formula_Summary": "0.60 CS + 0.10 12M + 0.10 GM + 0.10 WE + 0.05 DFa + 0.05 DFb",
+    "Confidence": "High"
+  },
+  {
+    "Institute": "IIM Indore",
+    "Shortlisting_Methodology": "Stage-II shortlist weights using school academics, CAT sectional components, diversity factor, and work experience",
+    "Key_Factors": [
+      "CAT cutoffs: Gen/EWS 90/80; NC-OBC 80/70; SC 60/55; ST/PwD 45/40",
+      "Stage-II shortlist weights: 10th 10 + 12th 25 + VARC16 + DILR16 + QA23 + DF7 + WE0–3",
+      "Academic normalization: Z-score normalization for 10th and 12th",
+      "Graduation weight: 0% in stage-1 shortlist",
+      "COVID redistribution: Missing 10th/12th marks redistributed pro rata",
+      "Diversity factor weight: DF=7",
+      "Work-experience weight: WE0–3"
+    ],
+    "Academic_Evaluation": "Academic normalization: Z-score normalization for 10th and 12th; Graduation weight: 0% in stage-1 shortlist",
+    "Work_Experience_Evaluation": "Work-experience weight: WE0–3",
+    "Diversity_Evaluation": "Diversity factor weight: DF=7",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Only official corrected category cutoffs and verified weights are admitted; unverified beneficiary and work-experience curve details are excluded."
+    ],
+    "Formula_Summary": "10th 10 + 12th 25 + VARC16 + DILR16 + QA23 + DF7 + WE0–3",
+    "Confidence": "Medium"
+  },
+  {
+    "Institute": "IIM Kozhikode",
+    "Shortlisting_Methodology": "Aggregate Index Score using CAT, Class X, Class XII, diversity, and work experience after registration stage",
+    "Key_Factors": [
+      "CAT thresholds: 85 overall and common sectional threshold of 75 for General; OBC-NCL/EWS 75/65; SC 65/55; ST/PwD 55/45",
+      "AIS weights: CAT 50 + Class X 15 + Class XII 20 + Gender 10 / Academic 5 + WorkEx 5",
+      "Class X normalization: Divide by board highest and multiply by 15",
+      "Class XII normalization: Divide by board-stream highest and multiply by 20",
+      "Gender / academic diversity: Gender 10, academic diversity 5, non-stacking",
+      "Work-experience curve: Peaks at 35–36 months at 5 points"
+    ],
+    "Academic_Evaluation": "Class X normalization: Divide by board highest and multiply by 15; Class XII normalization: Divide by board-stream highest and multiply by 20",
+    "Work_Experience_Evaluation": "Work-experience curve: Peaks at 35–36 months at 5 points",
+    "Diversity_Evaluation": "Gender / academic diversity: Gender 10, academic diversity 5, non-stacking",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "The institute-native shortlist stage is Stage 2; production data uses pre-interview shortlist concept."
+    ],
+    "Formula_Summary": "AIS = CAT 50 + Class X 15 + Class XII 20 + Gender 10 / Academic 5 + WorkEx 5",
+    "Confidence": "Medium"
+  },
+  {
+    "Institute": "IIM Shillong",
+    "Shortlisting_Methodology": "Phase 1 PI shortlist via CAT percentile plus NARS; Phase 2 final merit after PI",
+    "Key_Factors": [
+      "Aggregate shortlisting logic: Composite Score based on total CAT percentile and NARS, weighted 65% CAT / 35% NARS",
+      "Eligibility: Bachelor’s degree with 50%, or 45% for SC/ST/DA; CAT for domestic applicants",
+      "Program: PGP is a two-year full-time residential MBA"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Domestic production pathway uses CAT + NARS; non-flagship executive exam line excluded."
+    ],
+    "Formula_Summary": "Composite Score = 65% CAT + 35% NARS",
+    "Confidence": "High"
+  },
+  {
+    "Institute": "IIM Ranchi",
+    "Shortlisting_Methodology": "Institute-specific initial PI shortlist followed by final CML",
+    "Key_Factors": [
+      "Initial PI shortlist cutoff: General initial shortlist is 95.25 overall, with 75 sectional percentiles and positive scaled scores",
+      "Final CML methodology: 65 CAT component + 20 profile + 15 PI",
+      "Gender bonus: 5 bonus marks for female/transgender candidates",
+      "MBA-HRM work-experience bonus: 5 bonus marks in MBA-HRM for 2–3 years work experience",
+      "MBA-BA eligibility: Relevant full-time UG degree with 60% and specified quantitative or computing subjects studied"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "MBA-HRM work-experience bonus: 5 bonus marks in MBA-HRM for 2–3 years work experience",
+    "Diversity_Evaluation": "Gender bonus: 5 bonus marks for female/transgender candidates",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "The common JAP 90 minimum was not retained as Ranchi-specific shortlist cutoff."
+    ],
+    "Formula_Summary": "Initial PI shortlist: General 95.25 overall with 75 sectional percentiles and positive scaled scores; Final CML = 65 CAT + 20 Profile + 15 PI",
+    "Confidence": "High"
+  },
+  {
+    "Institute": "IIM Raipur",
+    "Shortlisting_Methodology": "JAP registration followed by institute-specific final score model",
+    "Key_Factors": [
+      "Graduation minimums: 60 for GEN/EWS/NC-OBC, 50 for SC, 45 for ST/PwD",
+      "Final-score weights: CAT 50, PI 40, Class X 15, Class XII 15, Work Ex 15, Gender 8, Profile 5, Academic Diversity 2",
+      "Gender/academic diversity exclusivity: Candidates receive either gender or academic-diversity marks, not both"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Gender/academic diversity exclusivity: Candidates receive either gender or academic-diversity marks, not both",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Gender and academic-diversity marks are mutually exclusive. Extracted 96.25 cutoff not admitted."
+    ],
+    "Formula_Summary": "Final Score = CAT 50 + PI 40 + Class X 15 + Class XII 15 + Work Experience 15 + Gender 8 + Profile 5 + Academic Diversity 2",
+    "Confidence": "Medium"
+  },
+  {
+    "Institute": "IIM Rohtak",
+    "Shortlisting_Methodology": "Lack of verified official data",
+    "Key_Factors": [],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "All extracted factor values were excluded from production datasets because current official verification failed."
+    ],
+    "Formula_Summary": "",
+    "Confidence": "Low"
+  },
+  {
+    "Institute": "IIM Sambalpur",
+    "Shortlisting_Methodology": "Stage 1 CAT thresholds; Stage 2 Pre-PI score; Stage 3 PI and final merit",
+    "Key_Factors": [
+      "Stage-1 CAT thresholds: General 90, EWS 80, NC-OBC 75, SC 55, ST 40, DAP 40; positive CAT raw scores required in all sections",
+      "General-category relaxation: General-category relaxation to 85 for all female candidates and for male candidates with at least one year of relevant work experience",
+      "CAT-score formula: 0.31 × overall percentile + 0.03 each for VARC, QA, and DILR",
+      "Pre-PI score: Stage 2 Pre-PI score out of 75",
+      "Planned intake: 320"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "General-category relaxation: General-category relaxation to 85 for all female candidates and for male candidates with at least one year of relevant work experience",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Stage-1 thresholds include category cutoffs and General relaxation rules."
+    ],
+    "Formula_Summary": "CAT-score formula = 0.31 × overall percentile + 0.03 each for VARC, QA, and DILR; Pre-PI score out of 75",
+    "Confidence": "High"
+  },
+  {
+    "Institute": "IIFM Bhopal",
+    "Shortlisting_Methodology": "Exam-based shortlisting followed by offline PI",
+    "Key_Factors": [
+      "Program set and seats: Four MBA programs; seats 150 + 75 + 75 + 75",
+      "Eligibility: Bachelor’s degree with 50%, or 45% for SC/ST/DA; CAT/XAT/MAT/CMAT accepted",
+      "Selection stages: Exam-based shortlisting followed by offline PI across seven centers",
+      "Fees: ₹12.98 lakh for General/NC-OBC/EWS and ₹7.788 lakh for SC/ST, plus refundable caution money"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Program, seat, eligibility, accepted-exam, PI-mode, reservation, fee, and deadline data are verified."
+    ],
+    "Formula_Summary": "No detailed shortlisting weightage or formula publicly disclosed in retrieved official pages",
+    "Confidence": "Medium"
+  },
+  {
+    "Institute": "FMS Delhi",
+    "Shortlisting_Methodology": "Weighted CAT shortlist plus women bonus",
+    "Key_Factors": [
+      "Shortlist formula: 0.40 VARC + 0.30 DILR + 0.30 QA",
+      "Women bonus at shortlist: +5 women at shortlist",
+      "Final-selection matrix: 50 CAT + 10 Class X + 10 Class XII + 10 SOP discussion + 5 Extempore + 15 PI; +5 women at interview stage"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Women bonus at shortlist: +5 women at shortlist",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "CAT section values are weights, not sectional minimum cutoffs."
+    ],
+    "Formula_Summary": "Shortlist score = 0.40 VARC + 0.30 DILR + 0.30 QA; +5 women at shortlist",
+    "Confidence": "High"
+  },
+  {
+    "Institute": "IIFT Delhi",
+    "Shortlisting_Methodology": "CAT 2025 plus other defined parameters; shortlist to GD/PI",
+    "Key_Factors": [
+      "Broad process: CAT 2025 plus other defined parameters; shortlist to GD/PI",
+      "Secondary-supported Stage-I weights: 90 CAT + 5 Work Experience + 5 Gender",
+      "Secondary-supported Stage-II weights: 55 CAT + 10 GD + 20 PI + 5 Gender + 5 Work Experience + 5 Academic Consistency"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Exact numeric weights are secondary/archival-supported, not primary-published in retrieved prospectus."
+    ],
+    "Formula_Summary": "Secondary-supported Stage-I = 90 CAT + 5 Work Experience + 5 Gender",
+    "Confidence": "Medium"
+  },
+  {
+    "Institute": "MDI Gurgaon",
+    "Shortlisting_Methodology": "Stage-I composite score using CAT, academics, diversity, and work experience",
+    "Key_Factors": [
+      "Stage-I selection weights: 70 CAT + 5 Class X + 5 Class XII + 5 Graduation + 2.5 Academic Diversity + 2.5 Gender Diversity + 10 Work Experience",
+      "Stage-II selection weights: 35 CAT + 5 BAT + 5 WAT + 10 GD + 20 PI + 5 Graduation + 2.5 Academic Diversity + 2.5 Gender Diversity + 2.5 Regional Diversity + 2.5 Sports + 10 Work Experience"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Official source also publishes final-stage BAT/WAT/GD/PI, regional diversity, sports, and work-experience table."
+    ],
+    "Formula_Summary": "Stage-I = 70 CAT + 5 Class X + 5 Class XII + 5 Graduation + 2.5 Academic Diversity + 2.5 Gender Diversity + 10 Work Experience",
+    "Confidence": "High"
+  },
+  {
+    "Institute": "IMT Ghaziabad",
+    "Shortlisting_Methodology": "Holistic screening described by secondary sources; no public official numeric matrix retrieved",
+    "Key_Factors": [
+      "Broad holistic process: Exam score, academics, diversity, work experience, CT/PI or PI-related assessment, and extracurriculars described by secondary sources; no exact official numeric matrix"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "No exact official weightage, formula, normalization, or cutoff admitted."
+    ],
+    "Formula_Summary": "",
+    "Confidence": "Low"
+  },
+  {
+    "Institute": "IRMA Anand",
+    "Shortlisting_Methodology": "Current official pages verify MBA status and eligibility; detailed composite not admitted as production formula",
+    "Key_Factors": [
+      "Eligibility/programme status: Current official pages verify MBA 2026–28 status, eligibility, fee categories, document requirements, and no-management-quota statement"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Secondary composite values were not admitted where sources conflicted or lacked current primary support."
+    ],
+    "Formula_Summary": "",
+    "Confidence": "Medium"
+  },
+  {
+    "Institute": "XIMB Bhubaneswar",
+    "Shortlisting_Methodology": "Accepted-test based admissions process; detailed scoring matrix not publicly verified",
+    "Key_Factors": [
+      "Eligibility: 55% aggregate",
+      "Accepted tests: XAT, CAT, GMAT, XGMT"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Only eligibility and accepted-test facts are admitted; unsupported cutoffs/WAT/GD weights excluded."
+    ],
+    "Formula_Summary": "",
+    "Confidence": "Medium"
+  },
+  {
+    "Institute": "SPJIMR Mumbai",
+    "Shortlisting_Methodology": "Profile-based and profile-cum-score-based pathways",
+    "Key_Factors": [
+      "Shortlisting pathway: Profile-based + profile-cum-score-based",
+      "Profile pathway components: Academic background, work-experience relevance, entrance scores, and versatility/achievements are considered"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Unpublished CAT cutoff numbers excluded."
+    ],
+    "Formula_Summary": "No public numeric formula admitted; official pathway considers academic background, work-experience relevance, entrance scores, versatility/achievements",
+    "Confidence": "Medium"
+  },
+  {
+    "Institute": "XLRI Jamshedpur",
+    "Shortlisting_Methodology": "BM/HRM interview shortlist based only on XAT scores",
+    "Key_Factors": [
+      "BM/HRM shortlist basis: Interview shortlists for BM and HRM are based only on XAT scores",
+      "Accepted exam pathway: Indian applicants use XAT; GMAT is available for specified non-XAT cases"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Unpublished public cutoff values excluded."
+    ],
+    "Formula_Summary": "No public numeric shortlist threshold/formula admitted",
+    "Confidence": "Medium"
+  },
+  {
+    "Institute": "ISB Hyderabad and Mohali",
+    "Shortlisting_Methodology": "Unified PGP admissions process across Hyderabad and Mohali",
+    "Key_Factors": [
+      "Core criteria: Bachelor's degree, valid GMAT/GRE score, and at least 24 months full-time work experience",
+      "Essays and interview: Essays and interview are integral to the process",
+      "Campus process: Same PGP process applies across Hyderabad and Mohali"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "No Stage-2 extracted row existed; production row uses official criteria only."
+    ],
+    "Formula_Summary": "Bachelor's degree + valid GMAT/GRE + at least 24 months full-time work experience + essays + interview",
+    "Confidence": "Low"
+  },
+  {
+    "Institute": "JBIMS Mumbai",
+    "Shortlisting_Methodology": "Centralized MAH-MBA CET + CAP process by DTE/CET Cell",
+    "Key_Factors": [
+      "Governance model: Admission is through MAH-MBA CET and CAP rounds carried out by DTE Maharashtra/CET Cell",
+      "CAP corroboration: MBA/MMS admission moves through CET Cell CAP registration and document verification"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Institute-specific composite formula claims excluded."
+    ],
+    "Formula_Summary": "No institute-specific AR/IPA formula admitted",
+    "Confidence": "Low"
+  },
+  {
+    "Institute": "NMIMS Mumbai",
+    "Shortlisting_Methodology": "Stage-1 shortlist using NMAT sectional and total score; second stage may include competency test and PI",
+    "Key_Factors": [
+      "Stage-1 shortlist basis: Only the first NMAT attempt is accepted; Stage-2 shortlisting uses sectional and total NMAT score",
+      "Second-stage process: Second stage may include a competency test and PI",
+      "Final merit components: Final merit includes NMAT, PI, competency test, work experience, and past academic performance",
+      "Women seats: 30% of seats are offered to women candidates"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Women seats: 30% of seats are offered to women candidates",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "30% of seats are offered to women candidates as per official handout."
+    ],
+    "Formula_Summary": "Final merit includes NMAT, PI, competency test, work experience, and past academic performance; exact numeric thresholds not admitted",
+    "Confidence": "Medium"
+  },
+  {
+    "Institute": "SIBM Pune",
+    "Shortlisting_Methodology": "GE-PI shortlist based on overall SNAP percentile",
+    "Key_Factors": [
+      "Stage-1 shortlist basis: Shortlist for GE-PI is based on overall SNAP percentile",
+      "Merit-list formula: SNAP 50, GE 10, PI 40"
+    ],
+    "Academic_Evaluation": "Lack of verified published data in production dataset",
+    "Work_Experience_Evaluation": "Lack of verified published data in production dataset",
+    "Diversity_Evaluation": "Lack of verified published data in production dataset",
+    "Professional_Qualification_Rules": "Lack of verified published data in production dataset",
+    "Important_Exceptions": [
+      "Unpublished 98.5 percentile cutoff excluded."
+    ],
+    "Formula_Summary": "Merit List = SNAP 50 + GE 10 + PI 40",
+    "Confidence": "High"
+  }
+]

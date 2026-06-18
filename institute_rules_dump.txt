@@ -1,0 +1,126 @@
+
+========================================
+FMS Delhi
+========================================
+- CAT weighted shortlist | Weight: 0.40 VARC + 0.30 DILR + 0.30 QA | Formula: Shortlist score = 0.40 VARC + 0.30 DILR + 0.30 QA
+- Women bonus | Weight: +5 | Formula: nan
+
+========================================
+IIFM Bhopal
+========================================
+- Exam-based shortlisting | Weight: nan | Formula: nan
+
+========================================
+IIFT Delhi
+========================================
+- Stage-I secondary-supported weights | Weight: 90 CAT + 5 Work Experience + 5 Gender | Formula: nan
+
+========================================
+IIM Ahmedabad
+========================================
+- CAT cutoff | Weight: nan | Formula: nan
+- Composite score | Weight: nan | Formula: CS = 0.35×(AR/38) + 0.65×(CAT/204)
+- Academic Rating | Weight: nan | Formula: AR = A+B+C+D+E
+- Work experience | Weight: nan | Formula: 0.20×(months−11), capped at 5
+- Gender diversity | Weight: nan | Formula: nan
+- Academic thresholds | Weight: nan | Formula: nan
+
+========================================
+IIM Bangalore
+========================================
+- Pre-PI score | Weight: CAT 55 + 10th 10 + 12th 10 + Bachelor 10 + WorkEx/ProfCourse 10 + Gender 5 | Formula: nan
+- CAT sectional composition | Weight: 19 / 21 / 15 | Formula: nan
+- Work-experience formula | Weight: nan | Formula: 10x/36 for x<36; 10 at x≥36
+- Professional-course interaction | Weight: nan | Formula: Higher of work-ex score or professional-course score
+- Standardization formula | Weight: nan | Formula: Max[0,min{wt, wt/2 + ((val-mean)/sd)×wt/6}]
+
+========================================
+IIM Calcutta
+========================================
+- Stage-I CAT cutoffs | Weight: nan | Formula: nan
+- Stage-II shortlist formula | Weight: CAT 56 + Class 10 10 + Class 12 15 + Gender 4 | Formula: nan
+- Class 10 brackets | Weight: 10/8/6/4/2/0 | Formula: nan
+- Class 12 brackets | Weight: 15/12/9/6/3/0 | Formula: nan
+- Gender diversity | Weight: 4 | Formula: nan
+
+========================================
+IIM Indore
+========================================
+- CAT cutoffs | Weight: nan | Formula: nan
+- Stage-II shortlist weights | Weight: 10th 10 + 12th 25 + VARC16 + DILR16 + QA23 + DF7 + WE0–3 | Formula: nan
+- Academic normalization | Weight: nan | Formula: Z-score normalization for 10th and 12th
+- Diversity factor weight | Weight: 7 | Formula: nan
+- Work-experience weight | Weight: 0–3 | Formula: nan
+
+========================================
+IIM Kozhikode
+========================================
+- CAT thresholds | Weight: nan | Formula: nan
+- AIS weights | Weight: CAT 50 + Class X 15 + Class XII 20 + Gender 10 / Academic 5 + WorkEx 5 | Formula: nan
+- Class X normalization | Weight: 15 | Formula: candidate Class X marks / board highest × 15
+- Class XII normalization | Weight: 20 | Formula: candidate Class XII marks / board-stream highest × 20
+- Gender / academic diversity | Weight: Gender 10 or academic diversity 5 | Formula: nan
+- Work-experience curve | Weight: 5 | Formula: Peaks at 35–36 months at 5 points
+
+========================================
+IIM Lucknow
+========================================
+- Cutoffs | Weight: nan | Formula: nan
+- Composite shortlist formula | Weight: 0.60 CS + 0.10 12M + 0.10 GM + 0.10 WE + 0.05 DFa + 0.05 DFb | Formula: 0.60 CS + 0.10 12M + 0.10 GM + 0.10 WE + 0.05 DFa + 0.05 DFb
+- CS formula | Weight: nan | Formula: Scaled CAT = candidate CAT / highest CAT × 60
+- Class 12 percentile formula | Weight: 0.10 12M | Formula: 12M from five-year pooled board/discipline percentile
+- Graduation normalization | Weight: 0.10 GM | Formula: Discipline-wise normalized GM
+- Work experience | Weight: 0.10 WE | Formula: MBA formula from x>6; ABM zero; SM requires x>24
+- Diversity factors | Weight: 0.05 DFa + 0.05 DFb | Formula: nan
+
+========================================
+IIM Ranchi
+========================================
+- Initial PI shortlist cutoff | Weight: nan | Formula: nan
+
+========================================
+IIM Sambalpur
+========================================
+- Stage-1 CAT thresholds | Weight: nan | Formula: nan
+- CAT-score formula | Weight: nan | Formula: 0.31 × overall percentile + 0.03×VARC + 0.03×QA + 0.03×DILR
+- General relaxation | Weight: nan | Formula: nan
+
+========================================
+IIM Shillong
+========================================
+- Composite Score | Weight: 65% CAT + 35% NARS | Formula: Composite Score = 65% CAT + 35% NARS
+
+========================================
+ISB Hyderabad and Mohali
+========================================
+- Core eligibility criteria | Weight: nan | Formula: Bachelor's degree + valid GMAT/GRE + at least 24 months full-time work experience
+
+========================================
+JBIMS Mumbai
+========================================
+- CAP-led governance | Weight: nan | Formula: MAH-MBA CET + CAP process by DTE/CET Cell
+
+========================================
+MDI Gurgaon
+========================================
+- Stage-I selection weights | Weight: 70 CAT + 5 Class X + 5 Class XII + 5 Graduation + 2.5 Academic Diversity + 2.5 Gender Diversity + 10 Work Experience | Formula: nan
+
+========================================
+NMIMS Mumbai
+========================================
+- Stage-1 NMAT shortlist basis | Weight: nan | Formula: First NMAT attempt; sectional and total NMAT score used for shortlisting
+
+========================================
+SIBM Pune
+========================================
+- SNAP shortlist basis | Weight: nan | Formula: GE-PI shortlist based on overall SNAP percentile
+
+========================================
+SPJIMR Mumbai
+========================================
+- Shortlisting pathway | Weight: nan | Formula: Profile-based + profile-cum-score-based
+
+========================================
+XLRI Jamshedpur
+========================================
+- BM/HRM shortlist basis | Weight: nan | Formula: Interview shortlists for BM and HRM are based only on XAT scores

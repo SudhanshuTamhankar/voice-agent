@@ -1,0 +1,51 @@
+﻿Institute_Name,Factor,Weightage,Unit,Formula,Minimum_Requirement,Maximum_Score,Verified
+IIM Ahmedabad,CAT cutoff,,Percentile,,CAT ≥95 overall; ≥85 sectional for General/EWS,,Yes
+IIM Ahmedabad,Composite score,,Formula,CS = 0.35×(AR/38) + 0.65×(CAT/204),,,Yes
+IIM Ahmedabad,Academic Rating,,Formula,AR = A+B+C+D+E,,38,Yes
+IIM Ahmedabad,Work experience,,Points,"0.20×(months−11), capped at 5",,5,Yes
+IIM Ahmedabad,Gender diversity,,Points,,,3,Yes
+IIM Ahmedabad,Academic thresholds,,Threshold,,Stream-wise P threshold and 80th-percentile bachelor threshold by category/group,,Yes
+IIM Bangalore,Pre-PI score,CAT 55 + 10th 10 + 12th 10 + Bachelor 10 + WorkEx/ProfCourse 10 + Gender 5,Points,,,100,Yes
+IIM Bangalore,CAT sectional composition,19 / 21 / 15,Points,,,55,Yes
+IIM Bangalore,Work-experience formula,,Points,10x/36 for x<36; 10 at x≥36,,10,Yes
+IIM Bangalore,Professional-course interaction,,Rule,Higher of work-ex score or professional-course score,,10,Yes
+IIM Bangalore,Standardization formula,,Formula,"Max[0,min{wt, wt/2 + ((val-mean)/sd)×wt/6}]",,,Yes
+IIM Calcutta,Stage-I CAT cutoffs,,Percentile,,Open 85/80/80/75 and category-wise minima,,Yes
+IIM Calcutta,Stage-II shortlist formula,CAT 56 + Class 10 10 + Class 12 15 + Gender 4,Points,,,85,Yes
+IIM Calcutta,Class 10 brackets,10/8/6/4/2/0,Points,,,10,Yes
+IIM Calcutta,Class 12 brackets,15/12/9/6/3/0,Points,,,15,Yes
+IIM Calcutta,Gender diversity,4,Points,,,4,Yes
+IIM Lucknow,Cutoffs,,Percentile,,General MBA 90 overall / 85 sectional,,Yes
+IIM Lucknow,Composite shortlist formula,0.60 CS + 0.10 12M + 0.10 GM + 0.10 WE + 0.05 DFa + 0.05 DFb,Formula,0.60 CS + 0.10 12M + 0.10 GM + 0.10 WE + 0.05 DFa + 0.05 DFb,,,Yes
+IIM Lucknow,CS formula,,Formula,Scaled CAT = candidate CAT / highest CAT × 60,,60,Yes
+IIM Lucknow,Class 12 percentile formula,0.10 12M,Formula,12M from five-year pooled board/discipline percentile,,,Yes
+IIM Lucknow,Graduation normalization,0.10 GM,Formula,Discipline-wise normalized GM,,,Yes
+IIM Lucknow,Work experience,0.10 WE,Points,MBA formula from x>6; ABM zero; SM requires x>24,,,Yes
+IIM Lucknow,Diversity factors,0.05 DFa + 0.05 DFb,Points,,,10,Yes
+IIM Indore,CAT cutoffs,,Percentile,,Gen/EWS 90/80; NC-OBC 80/70; SC 60/55; ST/PwD 45/40,,Yes
+IIM Indore,Stage-II shortlist weights,10th 10 + 12th 25 + VARC16 + DILR16 + QA23 + DF7 + WE0–3,Points,,,100,Yes
+IIM Indore,Academic normalization,,Formula,Z-score normalization for 10th and 12th,,,Yes
+IIM Indore,Diversity factor weight,7,Points,,,7,Yes
+IIM Indore,Work-experience weight,0–3,Points,,,3,Yes
+IIM Kozhikode,CAT thresholds,,Percentile,,General 85 overall and common sectional 75; OBC-NCL/EWS 75/65; SC 65/55; ST/PwD 55/45,,Yes
+IIM Kozhikode,AIS weights,CAT 50 + Class X 15 + Class XII 20 + Gender 10 / Academic 5 + WorkEx 5,Points,,,100,Yes
+IIM Kozhikode,Class X normalization,15,Formula,candidate Class X marks / board highest × 15,,15,Yes
+IIM Kozhikode,Class XII normalization,20,Formula,candidate Class XII marks / board-stream highest × 20,,20,Yes
+IIM Kozhikode,Gender / academic diversity,Gender 10 or academic diversity 5,Points,,,10,Yes
+IIM Kozhikode,Work-experience curve,5,Points,Peaks at 35–36 months at 5 points,,5,Yes
+IIM Shillong,Composite Score,65% CAT + 35% NARS,Percent,Composite Score = 65% CAT + 35% NARS,,,Yes
+IIM Ranchi,Initial PI shortlist cutoff,,Percentile,,General 95.25 overall; 75 sectional percentiles; positive scaled scores,,Yes
+IIM Sambalpur,Stage-1 CAT thresholds,,Percentile,,"General 90, EWS 80, NC-OBC 75, SC 55, ST 40, DAP 40; positive CAT raw scores in all sections",,Yes
+IIM Sambalpur,CAT-score formula,,Formula,0.31 × overall percentile + 0.03×VARC + 0.03×QA + 0.03×DILR,,,Yes
+IIM Sambalpur,General relaxation,,Percentile,,General relaxation to 85 for all female candidates and for male candidates with at least one year relevant work experience,,Yes
+IIFM Bhopal,Exam-based shortlisting,,Process,,CAT/XAT/MAT/CMAT accepted,,Yes
+FMS Delhi,CAT weighted shortlist,0.40 VARC + 0.30 DILR + 0.30 QA,Percent,Shortlist score = 0.40 VARC + 0.30 DILR + 0.30 QA,,,Yes
+FMS Delhi,Women bonus,+5,Points,,,5,Yes
+IIFT Delhi,Stage-I secondary-supported weights,90 CAT + 5 Work Experience + 5 Gender,Points,,,100,Yes
+MDI Gurgaon,Stage-I selection weights,70 CAT + 5 Class X + 5 Class XII + 5 Graduation + 2.5 Academic Diversity + 2.5 Gender Diversity + 10 Work Experience,Points,,,100,Yes
+SPJIMR Mumbai,Shortlisting pathway,,Process,Profile-based + profile-cum-score-based,,,Yes
+XLRI Jamshedpur,BM/HRM shortlist basis,,Process,Interview shortlists for BM and HRM are based only on XAT scores,,,Yes
+ISB Hyderabad and Mohali,Core eligibility criteria,,Minimum requirement,Bachelor's degree + valid GMAT/GRE + at least 24 months full-time work experience,,,Yes
+JBIMS Mumbai,CAP-led governance,,Process,MAH-MBA CET + CAP process by DTE/CET Cell,,,Yes
+NMIMS Mumbai,Stage-1 NMAT shortlist basis,,Process,First NMAT attempt; sectional and total NMAT score used for shortlisting,,,Yes
+SIBM Pune,SNAP shortlist basis,,Process,GE-PI shortlist based on overall SNAP percentile,,,Yes
