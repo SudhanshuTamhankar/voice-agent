@@ -161,7 +161,11 @@ def _process_ask(query: str, session_id: str) -> AskResponse:
                 intent="PROFILE_EVALUATION",
                 institute_id=expanded_institutes[0] if expanded_institutes else None,
                 answer=question,
-                profile_complete=False
+                profile_complete=False,
+                visual_payload={
+                    "type": "missing_fields",
+                    "data": {"fields": missing_fields}
+                }
             )
         else:
             # Profile is Complete. Check if they asked for a specific institute.
@@ -232,7 +236,11 @@ def _process_ask(query: str, session_id: str) -> AskResponse:
                 intent="COLLEGE_RECOMMENDATION",
                 institute_id=expanded_institutes[0] if expanded_institutes else None,
                 answer=question,
-                profile_complete=False
+                profile_complete=False,
+                visual_payload={
+                    "type": "missing_fields",
+                    "data": {"fields": missing_fields}
+                }
             )
             
         # Profile complete, generate report
@@ -269,7 +277,11 @@ def _process_ask(query: str, session_id: str) -> AskResponse:
             return AskResponse(
                 intent="TARGET_PERCENTILE",
                 answer=question,
-                profile_complete=False
+                profile_complete=False,
+                visual_payload={
+                    "type": "missing_fields",
+                    "data": {"fields": missing_fields}
+                }
             )
             
         if not expanded_institutes:

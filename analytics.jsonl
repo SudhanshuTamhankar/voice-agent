@@ -1282,3 +1282,10 @@
 {"timestamp": "2026-06-24T13:28:39.771272Z", "event": "intent.classified", "session_id": "web_session_jhaqxi", "payload": {"intent": "PROFILE_EVALUATION", "institute": []}}
 {"timestamp": "2026-06-24T13:47:39.500036Z", "event": "intent.classified", "session_id": "web_session_4u3d8p", "payload": {"intent": "METHODOLOGY", "institute": ["fms_delhi"]}}
 {"timestamp": "2026-06-24T13:53:41.489731Z", "event": "intent.classified", "session_id": "web_session_x8w8p", "payload": {"intent": "METHODOLOGY", "institute": ["fms_delhi"]}}
+{"timestamp": "2026-06-24T14:47:19.908783Z", "event": "intent.classified", "session_id": "web_session_kr0o3", "payload": {"intent": "TARGET_PERCENTILE", "institute": ["iim_ahmedabad", "iim_bangalore", "iim_calcutta", "iim_lucknow", "iim_indore", "iim_kozhikode", "iim_shillong", "iim_ranchi", "iim_raipur", "iim_rohtak", "iim_sambalpur"]}}
+{"timestamp": "2026-06-24T14:48:09.074485Z", "event": "intent.classified", "session_id": "web_session_kr0o3", "payload": {"intent": "PROFILE_EVALUATION", "institute": []}}
+{"timestamp": "2026-06-24T14:49:28.089472Z", "event": "intent.classified", "session_id": "web_session_kr0o3", "payload": {"intent": "PROFILE_EVALUATION", "institute": []}}
+{"timestamp": "2026-06-24T15:02:24.000647Z", "event": "intent.classified", "session_id": "web_session_hi36rd", "payload": {"intent": "TARGET_PERCENTILE", "institute": ["iim_ahmedabad"]}}
+{"timestamp": "2026-06-24T15:02:59.779454Z", "event": "intent.classified", "session_id": "web_session_hi36rd", "payload": {"intent": "PROFILE_EVALUATION", "institute": []}}
+{"timestamp": "2026-06-24T15:10:39.018162Z", "event": "intent.classified", "session_id": "web_session_vr2btq", "payload": {"intent": "TARGET_PERCENTILE", "institute": ["iim_ahmedabad", "iim_bangalore", "iim_calcutta", "iim_lucknow", "iim_indore", "iim_kozhikode", "iim_shillong", "iim_ranchi", "iim_raipur", "iim_rohtak", "iim_sambalpur"]}}
+{"timestamp": "2026-06-24T15:11:04.032014Z", "event": "intent.classified", "session_id": "web_session_vr2btq", "payload": {"intent": "PROFILE_EVALUATION", "institute": []}}

@@ -3146,15 +3146,44 @@
       }
     });
 
-    exploreBtn.addEventListener('click', () => {
+    exploreBtn.addEventListener('click', async () => {
       isInitiated = true;
       onboardingView.style.display = 'none';
       chatBody.style.display = 'flex';
       chatFooter.style.display = 'flex';
       
       const welcomeText = "Hi! I am the Clymber AI Admissions Assistant. I can evaluate your profile, recommend colleges, or explain IIM shortlisting methodologies. How can I help you today?";
+      
+      // Show speaking indicator but no text yet
+      typingIndicator.style.display = 'block';
+      typingIndicator.textContent = "Assistant is speaking...";
+      
+      // Wait for the speech to load and start playing
+      await playTTS(welcomeText);
+      
+      // Once audio is ready and playing, hide indicator
+      typingIndicator.style.display = 'none';
+      typingIndicator.textContent = "Assistant is typing...";
+      
+      // You can either show the text now, or just leave it empty. We will show a short prompt.
       addSimpleMessage("How can I help you today?", 'bot');
-      playTTS(welcomeText);
+    });
+
+    // Also highlight on the site that this is the Voice Agent demo
+    window.addEventListener('DOMContentLoaded', () => {
+        // Try to find the main hero heading and change it
+        const h1s = document.querySelectorAll('h1');
+        h1s.forEach(h1 => {
+            if(h1.textContent.includes('Clear CAT') || h1.textContent.includes('top IIMs')) {
+                h1.innerHTML = 'Experience the <br><em style="color:#5036FF;">Clymber Voice Agent</em>';
+            }
+        });
+        const subtitles = document.querySelectorAll('p.hero-sub');
+        subtitles.forEach(p => {
+            if(p.textContent.includes('Personalized CAT prep') || p.textContent.includes('No mass coaching')) {
+                p.innerHTML = '<strong>Voice-First AI Assistant.</strong> Click the purple microphone button in the bottom right corner to start talking to our new admissions expert!';
+            }
+        });
     });
 
     textInput.addEventListener('input', () => {
@@ -3223,6 +3252,19 @@
          if (payload.data.target && payload.data.target.length > 0) html += `<div style="margin-top:4px;"><strong>Target:</strong> ${payload.data.target.join(', ')}</div>`;
          if (payload.data.stretch && payload.data.stretch.length > 0) html += `<div style="margin-top:4px;"><strong>Stretch:</strong> ${payload.data.stretch.join(', ')}</div>`;
          html += `</div>`;
+      }
+      else if (payload.type === 'missing_fields') {
+         html += `<div class="vw-visual-highlight" style="background:#FFE6E6;color:#D32F2F;">Missing Information</div>`;
+         html += `<div class="vw-visual-card">`;
+         html += `<div class="vw-visual-title" style="color:#D32F2F;">Please Provide:</div>`;
+         html += `<ul class="vw-visual-list">`;
+         if (payload.data.fields && Array.isArray(payload.data.fields)) {
+             payload.data.fields.forEach(f => {
+                 let niceName = f.replace(/_/g, ' ').replace(/\w/g, l => l.toUpperCase());
+                 html += `<li>${niceName}</li>`;
+             });
+         }
+         html += `</ul></div>`;
       }
       else {
          html = payload.text || JSON.stringify(payload);
@@ -3300,10 +3342,68 @@
 
     let mediaRecorder = null;
     let audioChunks = [];
+    let audioContext = null;
+    let analyser = null;
+    let vadStream = null;
+    let vadReq = null;
+
+    function startVAD() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      
+      analyser = audioContext.createAnalyser();
+      analyser.minDecibels = -90;
+      analyser.maxDecibels = -10;
+      analyser.smoothingTimeConstant = 0.85;
+      
+      const source = audioContext.createMediaStreamSource(vadStream);
+      source.connect(analyser);
+      
+      const bufferLength = analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+      
+      let speechStarted = false;
+      let silenceStart = Date.now();
+      const SILENCE_THRESHOLD = 15;
+      const SILENCE_DURATION = 2000; // 2 seconds of silence after speaking
+      const MAX_SILENCE_DURATION = 5000; // 5 seconds of silence if no speaking
+      
+      function detectSilence() {
+        if (!mediaRecorder || mediaRecorder.state !== 'recording') return;
+        
+        analyser.getByteFrequencyData(dataArray);
+        let sum = 0;
+        for(let i=0; i<bufferLength; i++) {
+            sum += dataArray[i];
+        }
+        let average = sum / bufferLength;
+        
+        if (average > SILENCE_THRESHOLD) {
+            speechStarted = true;
+            silenceStart = Date.now();
+        } else {
+            if (speechStarted && (Date.now() - silenceStart > SILENCE_DURATION)) {
+                mediaRecorder.stop();
+                return;
+            } else if (!speechStarted && (Date.now() - silenceStart > MAX_SILENCE_DURATION)) {
+                mediaRecorder.stop();
+                return;
+            }
+        }
+        vadReq = requestAnimationFrame(detectSilence);
+      }
+      
+      vadReq = requestAnimationFrame(detectSilence);
+    }
 
     async function initMediaRecorder() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        vadStream = stream;
         mediaRecorder = new MediaRecorder(stream);
         
         mediaRecorder.ondataavailable = (event) => {
@@ -3315,15 +3415,17 @@
         mediaRecorder.onstart = () => {
           audioChunks = [];
           micBtn.classList.add('recording');
+          startVAD();
         };
 
         mediaRecorder.onstop = async () => {
+          if (vadReq) cancelAnimationFrame(vadReq);
           micBtn.classList.remove('recording');
           const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
           
           // Send to backend for transcription
           typingIndicator.style.display = 'block';
-          typingIndicator.textContent = "Listening...";
+          typingIndicator.textContent = "Thinking...";
           chatBody.scrollTop = chatBody.scrollHeight;
           
           const formData = new FormData();

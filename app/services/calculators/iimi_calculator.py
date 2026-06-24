@@ -26,7 +26,7 @@ class IIMICalculator(BaseCalculator):
         # 1. CAT Score (Weight 55)
         s_cat = 0.0
         if profile.actual_percentile:
-            s_cat = (profile.actual_percentile / 100.0) * 55.0
+            s_cat = (self.cat_percentile_to_raw(profile.actual_percentile) / 130.0) * 55.0
             factors.append(FactorScoreTrace(
                 factor_name="CAT Score",
                 rule_cited="CAT Weight 55",
@@ -109,7 +109,8 @@ class IIMICalculator(BaseCalculator):
         if required_cat_component <= 0:
             return 0.0
             
-        required_cat_pct = (required_cat_component / 55.0) * 100.0
+        required_raw = (required_cat_component / 55.0) * 130.0
+        required_cat_pct = self.cat_raw_to_percentile(required_raw)
         
         if required_cat_pct > 100.0:
             return None

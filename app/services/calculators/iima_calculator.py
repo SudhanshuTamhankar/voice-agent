@@ -95,34 +95,36 @@ class IIMACalculator(BaseCalculator):
 
         # 5. CAT Score (Estimation)
         cat_pct = profile.actual_percentile
+        MAX_ACHIEVED_CAT = 130.0  # IIMA uses Max Achieved, not theoretical max (198)
+
         if not cat_pct:
             s_cat = 0.0
             factors.append(FactorScoreTrace(
                 factor_name="CAT Score",
                 rule_cited="Scaled CAT Score",
                 score_awarded=0.0,
-                max_possible_score=204.0,
+                max_possible_score=MAX_ACHIEVED_CAT,
                 explanation="No CAT percentile provided. Assuming 0 for calculation."
             ))
         else:
-            s_cat = (cat_pct / 100.0) * 204.0
+            s_cat = self.cat_percentile_to_raw(cat_pct)
             factors.append(FactorScoreTrace(
                 factor_name="CAT Score (Estimated Raw)",
-                rule_cited="Estimated Scaled CAT Score",
+                rule_cited="Estimated Raw CAT Score from Percentile",
                 score_awarded=round(s_cat, 2),
-                max_possible_score=204.0,
+                max_possible_score=MAX_ACHIEVED_CAT,
                 explanation=f"Estimated raw score of {round(s_cat, 2)} based on {cat_pct} percentile."
             ))
 
         # 6. Composite Score
-        # CS = 0.35*(AR/38) + 0.65*(CAT/204)  *Note: Max AR with no diversity is ~35, but formula divides by 38
+        # CS = 0.35*(AR/38) + 0.65*(CAT/MAX_ACHIEVED)
         cs_ar_component = 0.35 * (ar / 38.0)
-        cs_cat_component = 0.65 * (s_cat / 204.0)
+        cs_cat_component = 0.65 * (s_cat / MAX_ACHIEVED_CAT)
         total_cs = (cs_ar_component + cs_cat_component) * 100  # Scale to 100 for benchmark comparison
         
         factors.append(FactorScoreTrace(
             factor_name="Composite Score (CS)",
-            rule_cited="0.35 × (AR/38) + 0.65 × (CAT/204)",
+            rule_cited="0.35 × (AR/38) + 0.65 × (CAT/Max)",
             score_awarded=round(total_cs, 2),
             max_possible_score=100.0,
             explanation=f"Calculated final composite score scaled to 100."
@@ -147,12 +149,18 @@ class IIMACalculator(BaseCalculator):
         required_cat_component = target_cs_scaled - ar_component
 
         if required_cat_component <= 0:
-            # Reached target without CAT
             return 0.0
             
-        required_cat_pct = (required_cat_component / 0.65) * 100.0
+        required_raw_cat = (required_cat_component / 0.65) * 130.0
         
-        if required_cat_pct > 100.0:
-            return None # Mathematically impossible
+        # If required raw is completely beyond what's possible (even higher than max achieved)
+        if required_raw_cat > 130.0:
+            return None
 
-        return round(required_cat_pct, 2)
+        required_pct = self.cat_raw_to_percentile(required_raw_cat)
+        
+        # Upper bound constraint just in case
+        if required_pct >= 100.0:
+            return 99.99
+
+        return round(required_pct, 2)

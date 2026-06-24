@@ -14,7 +14,7 @@ class IIMSambalpurCalculator(BaseCalculator):
         # CAT Score scaled
         s_cat = 0.0
         if profile.actual_percentile:
-            s_cat = profile.actual_percentile * 0.40  # 0.31 overall + 0.09 for sections
+            s_cat = (self.cat_percentile_to_raw(profile.actual_percentile) / 130.0 * 100.0) * 0.40  # 0.31 overall + 0.09 for sections
             factors.append(FactorScoreTrace(
                 factor_name="CAT Score",
                 rule_cited="Weighted CAT metrics",
@@ -40,7 +40,8 @@ class IIMSambalpurCalculator(BaseCalculator):
         )
 
     def estimate_required_percentile(self, profile: UserProfile, target_composite_score: float) -> float | None:
-        required_cat_pct = target_composite_score / 0.40
+        required_raw = target_composite_score / 0.40 * 130.0 / 100.0
+        required_cat_pct = self.cat_raw_to_percentile(required_raw)
         
         if required_cat_pct > 100.0:
             return None
