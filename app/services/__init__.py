@@ -14,7 +14,7 @@ from .percentile_estimator_service import PercentileEstimatorService
 from .target_percentile_agent import TargetPercentileAgent
 from .recommendation_engine import RecommendationEngine, RecommendationReport, CollegeBucket
 from .recommendation_agent import RecommendationAgent
-from .audio_service import SpeechToTextService, TextToSpeechService
+# Removed audio_service import to prevent web deploy crash
 from .telemetry import TelemetryService
 from .guardrail_verifier import GuardrailVerifier
 
