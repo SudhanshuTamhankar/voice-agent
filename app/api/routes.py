@@ -204,7 +204,11 @@ def _process_ask(query: str, session_id: str) -> AskResponse:
                 return AskResponse(
                     intent="PROFILE_EVALUATION",
                     answer="Excellent! Your profile is complete. Which institute would you like me to evaluate your chances for?",
-                    profile_complete=True
+                    profile_complete=False,
+                    visual_payload={
+                        "type": "missing_fields",
+                        "data": {"fields": ["target_institute"]}
+                    }
                 )
             
     if intent == "COLLEGE_RECOMMENDATION":
@@ -225,7 +229,11 @@ def _process_ask(query: str, session_id: str) -> AskResponse:
                 intent="COLLEGE_RECOMMENDATION",
                 institute_id=expanded_institutes[0] if expanded_institutes else None,
                 answer="I can't create a reliable college recommendation list without some CAT estimate, because the same profile can lead to very different college options at different percentiles. You can share your expected percentile, current mock percentile, or even a rough target range, and I'll use that to build the recommendation buckets.",
-                profile_complete=False
+                profile_complete=False,
+                visual_payload={
+                    "type": "missing_fields",
+                    "data": {"fields": ["actual_percentile"]}
+                }
             )
             
         missing_fields = ProfileValidator.get_missing_fields(profile, require_exam_score=True)
@@ -288,7 +296,11 @@ def _process_ask(query: str, session_id: str) -> AskResponse:
             return AskResponse(
                 intent="TARGET_PERCENTILE",
                 answer="Which institute would you like me to calculate the target percentile for?",
-                profile_complete=True
+                profile_complete=False,
+                visual_payload={
+                    "type": "missing_fields",
+                    "data": {"fields": ["target_institute"]}
+                }
             )
             
         answers = []
@@ -321,7 +333,11 @@ def _process_ask(query: str, session_id: str) -> AskResponse:
         return AskResponse(
             intent=intent,
             answer="I couldn't identify the institute you are asking about. Could you please specify the name clearly (e.g., 'IIM Ahmedabad')?",
-            profile_complete=False
+            profile_complete=False,
+            visual_payload={
+                "type": "missing_fields",
+                "data": {"fields": ["target_institute"]}
+            }
         )
         
     # 3. Methodolgy Flow (Stage 1)
