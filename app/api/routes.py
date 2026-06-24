@@ -123,16 +123,42 @@ def _process_ask(query: str, session_id: str) -> AskResponse:
         telemetry.track_event("guardrail.blocked", session_id, {"reason": "OUT_OF_DOMAIN"})
         return AskResponse(
             intent=intent,
-            answer="I can't help with that in this voice bot. This assistant is focused only on MBA admissions guidance, profile evaluation, target percentile planning, college recommendations, and institute shortlisting methodology. You can ask me something like: 'What percentile should I target for IIM Bangalore?' or 'Is my profile good for FMS?'",
-            profile_complete=False
+            answer="I can't help with that in this voice bot. This assistant is focused only on MBA admissions. Please check the screen for what I can do.",
+            profile_complete=False,
+            visual_payload={
+                "type": "out_of_domain",
+                "text": """<div class="vw-visual-highlight" style="background:#FFF3E0;color:#E65100;">Out of Scope</div>
+<div class="vw-visual-card">
+<div class="vw-visual-title" style="color:#E65100;">Supported Topics:</div>
+<ul class="vw-visual-list">
+<li>MBA admissions guidance</li>
+<li>Profile evaluation</li>
+<li>Target percentile planning</li>
+<li>College recommendations</li>
+<li>Institute shortlisting methodology</li>
+</ul></div>"""
+            }
         )
         
     if intent == "OUT_OF_DOMAIN_CLYMBER":
         telemetry.track_event("guardrail.blocked", session_id, {"reason": "OUT_OF_DOMAIN_CLYMBER"})
         return AskResponse(
             intent=intent,
-            answer="This voice bot is currently limited to MBA admissions guidance, profile evaluation, target percentile planning, college recommendations, and institute shortlisting methodology. For CAT preparation, DILR, QA, VARC, mocks, mentorship, scholarships, or course-related information, please check clymber.ai. I can still help you understand what percentile you should target or which colleges fit your profile.",
-            profile_complete=False
+            answer="This voice bot is currently limited to MBA admissions guidance. For CAT preparation and mocks, please check the main website. I can still help you understand your target percentiles.",
+            profile_complete=False,
+            visual_payload={
+                "type": "out_of_domain",
+                "text": """<div class="vw-visual-highlight" style="background:#E3F2FD;color:#1565C0;">Check Clymber.ai</div>
+<div class="vw-visual-card">
+<div class="vw-visual-title" style="color:#1565C0;">Voice Bot Capabilities:</div>
+<ul class="vw-visual-list">
+<li>Profile Evaluation</li>
+<li>Target Percentile</li>
+<li>College Recommendations</li>
+</ul>
+<div style="margin-top:10px;font-size:13px;color:#666;">For CAT prep, DILR, QA, VARC, and mocks, please visit the main Clymber website.</div>
+</div>"""
+            }
         )
     
     if intent == "PROFILE_EVALUATION" or intent == "UNKNOWN":
@@ -324,8 +350,21 @@ def _process_ask(query: str, session_id: str) -> AskResponse:
     if intent != "METHODOLOGY":
         return AskResponse(
             intent=intent,
-            answer="I am an admissions assistant. Right now, I can only help you understand how specific institutes shortlist candidates, evaluate your profile, or estimate your target percentile.",
-            profile_complete=False
+            answer="I am an admissions assistant. Right now, I can only help you with profile evaluation, target percentiles, and shortlisting criteria.",
+            profile_complete=False,
+            visual_payload={
+                "type": "out_of_domain",
+                "text": """<div class="vw-visual-highlight" style="background:#FFF3E0;color:#E65100;">Unsupported Request</div>
+<div class="vw-visual-card">
+<div class="vw-visual-title" style="color:#E65100;">Supported Topics:</div>
+<ul class="vw-visual-list">
+<li>MBA admissions guidance</li>
+<li>Profile evaluation</li>
+<li>Target percentile planning</li>
+<li>College recommendations</li>
+<li>Institute shortlisting methodology</li>
+</ul></div>"""
+            }
         )
         
     # 2. Check Institute Validity
