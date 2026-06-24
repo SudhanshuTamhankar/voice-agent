@@ -1,4 +1,4 @@
-from app.schemas.scoring import EvaluationResult
+from app.schemas.scoring import EvaluationResult, EvaluationMode
 
 class ResponsePlanGenerator:
     def generate_plan(self, evaluation: EvaluationResult) -> str:
@@ -8,28 +8,29 @@ class ResponsePlanGenerator:
         """
         plan = [
             f"=== DETERMINISTIC ADMISSIONS EVALUATION FOR {evaluation.institute_id.upper()} ===",
+            f"Mode: {evaluation.mode.value}",
+            f"Competitiveness Label: {evaluation.user_facing_label}",
             f"Total Composite Score: {evaluation.composite_score}",
-            f"Competitiveness Label: {evaluation.label.value}",
-            ""
+            f"Strengths: {evaluation.strengths}",
+            f"Risks: {evaluation.risks}",
+            f"Next Action: {evaluation.next_action}",
+            "Score Breakdown:"
         ]
-
-        if evaluation.safe_benchmark is not None:
-            plan.append(f"Safe Benchmark (Strong Composite): {evaluation.safe_benchmark}")
-            plan.append(f"Stretch Benchmark (Call Threshold): {evaluation.stretch_benchmark}")
-            plan.append("")
-
-        plan.append("--- FACTOR BREAKDOWN ---")
+        
         for factor in evaluation.factors:
-            plan.append(f"Factor: {factor.factor_name}")
-            plan.append(f"Score Awarded: {factor.score_awarded} (Max: {factor.max_possible_score or 'Unknown'})")
-            plan.append(f"Reasoning: {factor.explanation}")
-            plan.append(f"Rule Cited: {factor.rule_cited}")
-            plan.append("")
+            plan.append(f"- {factor.factor_name}: {factor.score_awarded} pts")
+        
+        plan.append("")
 
         plan.append("=== INSTRUCTIONS FOR LLM EXPLANATION ===")
-        plan.append("1. Do NOT invent or calculate any new numbers. Rely EXACTLY on the numbers provided above.")
+        plan.append("1. Do NOT invent or calculate any new numbers or raw benchmarks.")
         plan.append("2. Explain the Competitiveness Label to the user clearly.")
         plan.append("3. Highlight which factors helped them the most and which hurt them.")
-        plan.append("4. Keep it conversational and voice-friendly.")
+        plan.append("4. Follow the strict output contract format for your answer.")
+        
+        if evaluation.mode == EvaluationMode.PRE_CAT:
+            plan.append("5. MANDATORY PRE-CAT RULE: Since CAT is still ahead, do not aim only to clear the estimated range. Push for the maximum possible score because every extra mark improves your options across institutes.")
+        else:
+            plan.append("5. MANDATORY SCORE-KNOWN RULE: Use current-position wording (e.g. 'With your current score/profile, this appears...'). Avoid effort-based wording such as 'high-effort target' because the score may already be fixed.")
 
         return "\n".join(plan)

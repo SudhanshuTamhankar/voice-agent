@@ -5,29 +5,30 @@ class TargetPercentileAgent:
     def __init__(self, llm_service: LLMService):
         self.llm_service = llm_service
 
-    def generate_response(self, target_result: PercentileTargetResult, user_profile: dict) -> str:
+    def generate_response(self, target_result: PercentileTargetResult, user_profile: dict) -> tuple[str, dict]:
         """
         Generates a human-readable response based on the deterministic Target Percentile math.
         """
-        if target_result.is_possible and target_result.required_percentile is not None:
+        if target_result.is_possible and target_result.percentile_range is not None:
             # We have a specific percentile to target
             prompt = f"""
             You are an MBA Admissions Assistant.
             
             The user wants to know what CAT percentile they should target for {target_result.institute_id}.
-            Our deterministic math engine has calculated the exact required percentile based on their profile.
+            Our deterministic math engine has calculated the exact required percentile range based on their profile.
             
             Target Institute: {target_result.institute_id}
             User Profile: {user_profile}
-            Math Engine Required Percentile: {target_result.required_percentile}%
+            Math Engine Required Range: {target_result.percentile_range} percentile
             Engine Explanation: {target_result.explanation}
             
             Instructions:
-            1. Formulate a response explaining that based on their academic profile and work experience, they need a CAT percentile of approximately {target_result.required_percentile}% to hit the safe composite score.
+            1. Formulate a response using EXACTLY this conversational structure:
+               "For {target_result.institute_id}, your target should be around {target_result.percentile_range} percentile. This is reverse-engineered from the institute's composite-score logic for your profile and category. Treat it as a planning range, not a cutoff or guarantee. Since CAT is still controllable, aim for the maximum possible score."
             2. State that this is an estimation based on historical benchmarks and their current profile gap.
-            3. DO NOT hallucinate any math. DO NOT recalculate the percentile.
-            4. Emphasize that the required percentile might shift depending on the difficulty of the CAT paper and the pool of applicants in the actual year, so they should treat it as a target range rather than a guaranteed cut-off.
-            5. NEVER say "guaranteed call". Use words like "safe benchmark", "competitive range", or "target percentile".
+            3. DO NOT hallucinate any math or change the numbers.
+            4. Emphasize that they should aim for the maximum possible score rather than just the lower end of this range.
+            5. NEVER say "guaranteed call", "safe", or "cutoff".
             """
         elif target_result.is_possible:
             # Possible, but opaque or generic exam (like XLRI)
@@ -63,4 +64,15 @@ class TargetPercentileAgent:
             """
 
         response_text = self.llm_service.generate_text(prompt)
-        return response_text
+        
+        visual_payload = {
+            "type": "percentile_target",
+            "data": {
+                "institute_id": target_result.institute_id,
+                "is_possible": target_result.is_possible,
+                "percentile_range": target_result.percentile_range,
+                "explanation": target_result.explanation
+            }
+        }
+        
+        return response_text, visual_payload

@@ -7,6 +7,8 @@ load_dotenv()
 
 # API Keys
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GITHUB_PAT = os.getenv("GITHUB_PAT")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # Base directories
 BASE_DIR = Path(__file__).resolve().parent.parent.parent

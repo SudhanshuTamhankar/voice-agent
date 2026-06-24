@@ -12,6 +12,11 @@ from .response_plan_generator import ResponsePlanGenerator
 from .evaluation_agent import EvaluationAgent
 from .percentile_estimator_service import PercentileEstimatorService
 from .target_percentile_agent import TargetPercentileAgent
+from .recommendation_engine import RecommendationEngine, RecommendationReport, CollegeBucket
+from .recommendation_agent import RecommendationAgent
+from .audio_service import SpeechToTextService, TextToSpeechService
+from .telemetry import TelemetryService
+from .guardrail_verifier import GuardrailVerifier
 
 __all__ = [
     "LLMService",
@@ -27,5 +32,13 @@ __all__ = [
     "ResponsePlanGenerator",
     "EvaluationAgent",
     "PercentileEstimatorService",
-    "TargetPercentileAgent"
+    "TargetPercentileAgent",
+    "RecommendationEngine",
+    "RecommendationReport",
+    "CollegeBucket",
+    "RecommendationAgent",
+    "SpeechToTextService",
+    "TextToSpeechService",
+    "TelemetryService",
+    "GuardrailVerifier"
 ]

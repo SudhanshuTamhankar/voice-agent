@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 
 class ProfileDelta(BaseModel):
     """
@@ -8,13 +8,27 @@ class ProfileDelta(BaseModel):
     """
     category: Optional[str] = None
     gender: Optional[str] = None
-    class_10_score: Optional[float] = None
-    class_12_score: Optional[float] = None
-    graduation_score: Optional[float] = None
+    class_10_score: Optional[float] = Field(None, ge=0, le=100)
+    class_12_score: Optional[float] = Field(None, ge=0, le=100)
+    graduation_score: Optional[float] = Field(None, ge=0, le=100)
     graduation_stream: Optional[str] = None
-    work_ex_months: Optional[int] = None
+    work_ex_months: Optional[int] = Field(None, ge=0, le=480)
     target_exam: Optional[str] = None
-    actual_percentile: Optional[float] = None
+    actual_percentile: Optional[float] = Field(None, ge=0, le=100)
+
+    @field_validator('actual_percentile', 'class_10_score', 'class_12_score', 'graduation_score')
+    @classmethod
+    def check_score_bounds(cls, v):
+        if v is not None and (v < 0 or v > 100):
+            raise ValueError(f"Score must be between 0 and 100, got {v}")
+        return v
+        
+    @field_validator('work_ex_months')
+    @classmethod
+    def check_work_ex(cls, v):
+        if v is not None and (v < 0 or v > 480):
+            raise ValueError(f"Work experience must be realistic (0-480 months), got {v}")
+        return v
 
 class UserProfile(BaseModel):
     """
@@ -30,6 +44,7 @@ class UserProfile(BaseModel):
     target_exam: Optional[str] = None
     target_institute: Optional[str] = None
     actual_percentile: Optional[float] = None
+    last_intent: Optional[str] = None
 
     def merge_delta(self, delta: ProfileDelta):
         """

@@ -18,6 +18,9 @@ class BenchmarkRepository:
             df = df.where(pd.notnull(df), None)
             
             for index, row in df.iterrows():
+                if pd.isna(row.get("Institute")) or row.get("Institute") is None:
+                    continue
+                    
                 try:
                     row_dict = row.to_dict()
                     benchmark = Benchmark(**row_dict)

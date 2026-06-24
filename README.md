@@ -1,38 +1,63 @@
-# Antigravity Multi-Agent Software Engineering Template
+# Clymber AI Admissions Assistant
 
-This template gives you a reusable AI software engineering team for Antigravity.
+Clymber AI Admissions Assistant is a specialized Voice-first Agent designed to help MBA aspirants navigate the complex admission processes of top Indian Business Schools (IIMs, FMS, XLRI, etc.). It calculates deterministic composite scores, estimates target percentiles, and provides college recommendations based on real historical data—delivered through an interactive, LLM-powered voice UI.
 
-## What is included
+## 🚀 Features
 
-- `.agents/agents.md` — role definitions for the multi-agent engineering team
-- `.agents/workflows/` — reusable workflows/slash-command style instructions
-- `.agents/skills/` — focused skills for product, architecture, frontend, backend, database, QA, security, DevOps, and docs
-- `production_artifacts/` — PRD, technical specification, implementation plan, test report, security report, deployment report, and release checklist placeholders
-- `docs/` — API docs, ADR notes, and production runbook placeholders
-- `app/` — placeholder folder for your actual project code
+- **End-to-End Voice UX:** A polished, PPT-style "Smart Card" UI. The agent speaks the nuanced explanations aloud (via Edge-TTS) while displaying clean, readable summaries (Score Breakdowns, Methodologies, Target Percentiles) in the widget.
+- **Deterministic Evaluation Engine:** Calculates actual composite scores mathematically using exact formulas from IIM admissions criteria (e.g., IIM Ahmedabad, Bangalore, Calcutta, Lucknow, Kozhikode, Indore, FMS).
+- **Intelligent Prompting:** Powered by a semantic parser and multi-agent architecture via `Groq Llama-3-70b-8192`. The system intelligently handles intent routing (Methodology, Profile Evaluation, Target Percentile, College Recommendation).
+- **Guardrails:** Prevents out-of-domain interactions and gently deflects test prep queries to the main Clymber platform.
+- **Frontend Integration:** Seamlessly injects as a floating widget into any static HTML landing page, featuring a synchronized TTS-and-Visual interaction flow.
 
-## How to use
+## 🛠️ Tech Stack
 
-Copy this folder into the root of your project, or copy only the `.agents`, `production_artifacts`, and `docs` folders into an existing project.
+- **Backend:** FastAPI, Python 3.12
+- **LLM Engine:** Groq API (`llama3-70b-8192`) for near-zero latency intent classification and response generation.
+- **Voice / Audio:** Web Speech API for transcription, Microsoft Edge-TTS for high-quality voice synthesis.
+- **Frontend:** Vanilla HTML/CSS/JS (Widget), communicating asynchronously with the FastAPI backend.
 
-Then use workflows like:
+## ⚙️ Architecture
 
-```txt
-/build-feature "Build a SaaS dashboard where users can sign up, create projects, invite teammates, and view usage analytics."
-```
+The backend utilizes a sophisticated multi-agent pipeline to ensure mathematical accuracy while maintaining conversational fluidity:
+1. **Semantic Parser:** Identifies the user's core intent (`PROFILE_EVALUATION`, `TARGET_PERCENTILE`, `METHODOLOGY`, etc.) and the target institute.
+2. **Profile Extraction Agent:** Persists and updates user parameters (Academics, Work Ex, Category) across the session.
+3. **Deterministic Math Engines:** `ProfileScoringEngine` and `PercentileEstimatorService` execute hard-coded admissions algorithms against benchmark data.
+4. **Verbalization Agents:** (`EvaluationAgent`, `TargetPercentileAgent`, `ExplanationAgent`) translate the raw mathematical data into a conversational script and generate a structured `visual_payload` for the UI.
 
-```txt
-/production-readiness
-```
+## 🚀 Getting Started
 
-```txt
-/bugfix "Users are redirected to the dashboard after login, but the dashboard API returns 401 until refresh."
-```
+### Prerequisites
+- Python 3.10+
+- A Groq API Key
 
-```txt
-/release "Prepare version 1.0.0 for production deployment, but do not deploy until I approve."
-```
+### Installation
 
-## Recommended operating rule
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/SudhanshuTamhankar/voice-agent.git
+   cd voice-agent
+   ```
 
-Do not call a project production-ready until PRD, technical specification, implementation, QA, security, DevOps, documentation, and release checklist are complete.
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Environment Setup:**
+   Create a `.env` file in the root directory and add your Groq API key:
+   ```env
+   GROQ_API_KEY=your_groq_api_key_here
+   ```
+
+4. **Run the Application:**
+   ```bash
+   uvicorn app.main:app --reload
+   ```
+
+5. **Interact:**
+   Open your browser and navigate to `http://localhost:8000`. Click the floating purple microphone icon to start speaking to the Admissions Assistant!
+
+## 📝 License
+
+Proprietary Software - Clymber. All rights reserved.

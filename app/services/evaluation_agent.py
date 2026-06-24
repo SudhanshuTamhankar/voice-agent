@@ -14,13 +14,21 @@ class EvaluationAgent:
         A user has asked: "{query}"
 
         Below is the DETERMINISTIC EVALUATION of their profile. You MUST use these exact numbers and labels.
-        DO NOT hallucinate, calculate, or invent any scores.
+        DO NOT hallucinate, calculate, or invent any scores or raw benchmarks.
 
         {plan_text}
 
-        Please explain this result to the user. Keep your tone encouraging but realistic. 
-        Focus on explaining the 'Competitiveness Label' and point out the specific factors that contributed most to their score (positive or negative).
-        Speak concisely, as this will be read aloud by a Text-To-Speech engine.
+        If the user is explicitly asking for their "composite score", "actual score", or a "breakdown" of their score, YOU MUST directly answer their question by providing their Total Composite Score and the factor breakdown listed above. 
+        
+        Otherwise, if this is a general evaluation request, explain the result to the user using this structure (in conversational text format, no markdown):
+        For [institute], your profile is [Competitiveness Label]. Your estimated composite score is [Total Composite Score].
+        The main reason is [broad reason for this label].
+        Your strongest factors are [Strengths].
+        The main pressure points are [Risks].
+        The next step is [Next Action].
+        This is based on composite-score evaluation, so treat it as guidance, not a guaranteed call prediction.
+
+        FORBIDDEN WORDS: safe, guaranteed, definitely, impossible, no chance, you will get a call, you will not get a call, your profile is bad.
         """
 
         raw_response = self.llm_service.generate_text(prompt)

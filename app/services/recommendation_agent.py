@@ -5,7 +5,7 @@ class RecommendationAgent:
     def __init__(self, llm_service: LLMService):
         self.llm_service = llm_service
 
-    def generate_response(self, report: RecommendationReport) -> str:
+    def generate_response(self, report: RecommendationReport) -> tuple[str, dict]:
         """
         Generates a concise voice response explaining the bucketed recommendations and biggest gaps.
         """
@@ -42,12 +42,25 @@ class RecommendationAgent:
         
         Instructions:
         1. Give a conversational, concise summary. 
-        2. DO NOT read every single list. Highlight the top 1-2 realistic options and top 1 stretch option.
+        2. Please avoid reading every single list. Highlight the top 1-2 realistic options and top 1 stretch option.
         3. Explain their biggest fixed bottleneck gently.
         4. Emphasize their biggest controllable lever (usually CAT) as their main focus.
-        5. DO NOT hallucinate any rankings, guaranteed calls, or institutes not mentioned above.
+        5. Please avoid hallucinating any rankings, guaranteed calls, or institutes not mentioned above.
         6. Keep it short and natural for a voice response (under 4 sentences if possible).
         """
 
         response_text = self.llm_service.generate_text(prompt)
-        return response_text
+        
+        visual_payload = {
+            "type": "college_recommendations",
+            "data": {
+                "strong": [r.institute_id for r in report.strong_colleges],
+                "realistic": [r.institute_id for r in report.realistic_colleges],
+                "stretch": [r.institute_id for r in report.stretch_colleges],
+                "ambitious": [r.institute_id for r in report.ambitious_colleges],
+                "bottleneck": fixed_gap,
+                "lever": controllable_gap
+            }
+        }
+        
+        return response_text, visual_payload

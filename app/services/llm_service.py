@@ -1,39 +1,61 @@
-from google import genai
-from app.core.config import GEMINI_API_KEY
+import json
+import time
+from openai import OpenAI, RateLimitError
+from app.core.config import GITHUB_PAT, GROQ_API_KEY
 
 class LLMService:
     """
-    Wrapper around google-genai SDK for Gemini models.
+    Wrapper around OpenAI SDK for Groq Cloud API.
     """
-    def __init__(self, model_name: str = "gemini-flash-lite-latest"):
-        if not GEMINI_API_KEY:
-            raise ValueError("GEMINI_API_KEY is not set in the environment.")
+    def __init__(self, model_name: str = "llama-3.3-70b-versatile"):
+        if not GROQ_API_KEY:
+            raise ValueError("GROQ_API_KEY is not set in the environment.")
         
-        self.client = genai.Client(api_key=GEMINI_API_KEY)
+        self.client = OpenAI(
+            base_url="https://api.groq.com/openai/v1",
+            api_key=GROQ_API_KEY
+        )
         self.model_name = model_name
+
+    def _execute_with_retry(self, func, *args, **kwargs):
+        max_retries = 3
+        base_delay = 2
+        for attempt in range(max_retries):
+            try:
+                return func(*args, **kwargs)
+            except RateLimitError as e:
+                if attempt == max_retries - 1:
+                    raise e
+                time.sleep(base_delay * (2 ** attempt))
 
     def generate_text(self, prompt: str) -> str:
         """
-        Calls the Gemini model and returns the response text.
+        Calls the model and returns the response text.
         """
-        response = self.client.models.generate_content(
+        response = self._execute_with_retry(
+            self.client.chat.completions.create,
             model=self.model_name,
-            contents=prompt,
+            messages=[{"role": "system", "content": prompt}],
         )
-        return response.text
+        return response.choices[0].message.content
 
     def generate_json(self, prompt: str, response_schema=None) -> str:
         """
-        Calls the Gemini model and enforces a JSON response format.
+        Calls the model and enforces a JSON response format.
         Returns the raw JSON string.
         """
-        config = {"response_mime_type": "application/json"}
+        # Append schema requirements to prompt since Structured Outputs might not be supported on all GitHub Models
+        full_prompt = prompt
         if response_schema:
-            config["response_schema"] = response_schema
-            
-        response = self.client.models.generate_content(
+            full_prompt += f"\n\nYou MUST return your answer in valid JSON matching this schema: {json.dumps(response_schema)}"
+        else:
+            full_prompt += "\n\nYou MUST return your answer in valid JSON format."
+
+        response = self._execute_with_retry(
+            self.client.chat.completions.create,
             model=self.model_name,
-            contents=prompt,
-            config=config
+            messages=[{"role": "system", "content": full_prompt}],
+            response_format={"type": "json_object"}
         )
-        return response.text
+        return response.choices[0].message.content
+

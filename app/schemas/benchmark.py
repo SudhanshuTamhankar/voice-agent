@@ -9,8 +9,10 @@ class Benchmark(BaseModel):
     # The repository will map the raw row dict into this schema.
     composite_score_safe: Optional[float] = Field(None, alias="Typical Successful Composite")
     composite_score_stretch: Optional[float] = Field(None, alias="Call Threshold Composite")
+    composite_score_strong: Optional[float] = Field(None, alias="Strong Composite")
     cat_percentile_safe: Optional[float] = Field(None, alias="Typical Successful CAT")
     cat_percentile_stretch: Optional[float] = Field(None, alias="Call Threshold CAT")
+    cat_percentile_strong: Optional[float] = Field(None, alias="Strong CAT")
     
     confidence_score: Optional[str] = Field(None, alias="Confidence Score")
     confidence_explanation: Optional[str] = Field(None, alias="Confidence Explanation")

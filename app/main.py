@@ -18,7 +18,16 @@ app.add_middleware(
 
 app.include_router(router)
 
+from fastapi.staticfiles import StaticFiles
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 @app.get("/")
+def serve_frontend():
+    from fastapi.responses import FileResponse
+    return FileResponse("static/index.html")
+
+@app.get("/health")
 def health_check():
     return {
         "status": "healthy",

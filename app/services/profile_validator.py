@@ -11,7 +11,6 @@ class ProfileValidator:
         "class_10_score", 
         "class_12_score", 
         "graduation_score", 
-        "graduation_stream",
         "work_ex_months"
     ]
 

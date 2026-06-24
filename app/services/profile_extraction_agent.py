@@ -17,8 +17,9 @@ class ProfileExtractionAgent:
 
         Valid Categories: General, EWS, OBC, SC, ST, PwD
         Valid Genders: Male, Female, Transgender
-        Valid Streams: Engineering, Commerce, Arts, Science, etc.
+        Valid Streams: Engineering, Commerce, Arts, Science, etc. IMPORTANT: Aggressively map casual terms to these core streams (e.g. "Engineer", "B.Tech" -> "Engineering", "BSc" -> "Science", "BCom" -> "Commerce").
         Scores: Extract numerical values for 10th, 12th, and graduation.
+        IMPORTANT SLANG: If the user says '9/9/9' or '999 profile', it means 90 in 10th, 90 in 12th, and 90 in graduation. '888' means 80 in all three, '998' means 90,90,80, etc. Convert these immediately.
         Work Experience: Extract or convert to months (e.g. '2 years' = 24). If they say 'fresher', work_ex_months = 0.
         Percentile: If the user mentions any CAT score or percentile (e.g. '99.67 percentile', 'my cat is 99'), extract the numerical value and assign it to the 'actual_percentile' field. DO NOT leave it null if a number is provided.
 
@@ -42,5 +43,5 @@ class ProfileExtractionAgent:
         try:
             data = json.loads(raw_json_str)
             return ProfileDelta(**data)
-        except (json.JSONDecodeError, ValidationError) as e:
+        except json.JSONDecodeError as e:
             return ProfileDelta()

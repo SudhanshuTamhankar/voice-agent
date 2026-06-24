@@ -9,7 +9,7 @@ class ClarifyingQuestionGenerator:
     def __init__(self, llm_service: LLMService):
         self.llm_service = llm_service
 
-    def generate(self, missing_fields: List[str], provided_fields: dict) -> str:
+    def generate(self, missing_fields: List[str], provided_fields: dict, user_query: str = "") -> str:
         # Convert internal field names to readable strings
         readable_fields = [f.replace("_", " ").title() for f in missing_fields]
         missing_str = ", ".join(readable_fields)
@@ -25,9 +25,13 @@ class ClarifyingQuestionGenerator:
         HOWEVER, you still urgently need the following missing fields to run a deterministic calculation:
         [{missing_str}]
         
-        Write a single, conversational, encouraging sentence acknowledging what they just gave you (if any), 
-        and specifically asking them to provide the missing fields.
-        Do NOT answer any admissions questions or output JSON. Output just the conversational text.
+        The user's latest message was: "{user_query}"
+        
+        Instructions:
+        1. If the user's latest message is asking a meta-question about the profile you captured (e.g., "what is my 10th percentage you captured?", "did you get my work ex?"), ANSWER their question first using the provided fields data.
+        2. Then, write a single, conversational, encouraging sentence acknowledging what they just gave you (if any), and specifically ask them to provide the missing fields.
+        3. Do NOT answer any specific admissions evaluation questions (e.g., "am I good enough?") because you don't have the math results yet.
+        4. Output just the conversational text.
         """
 
         return self.llm_service.generate_text(prompt)

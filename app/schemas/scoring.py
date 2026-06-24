@@ -3,11 +3,16 @@ from typing import List, Optional
 from enum import Enum
 
 class CompetitivenessLabel(str, Enum):
-    SAFE = "SAFE"
-    STRETCH = "STRETCH"
-    AMBITIOUS = "AMBITIOUS"
-    UNLIKELY = "UNLIKELY"
+    ABOVE_STRONG = "ABOVE_STRONG"
+    TYPICAL_TO_STRONG = "TYPICAL_TO_STRONG"
+    CALL_TO_TYPICAL = "CALL_TO_TYPICAL"
+    SLIGHTLY_BELOW_CALL = "SLIGHTLY_BELOW_CALL"
+    OUTSIDE_CURRENT_CALL_RANGE = "OUTSIDE_CURRENT_CALL_RANGE"
     INSUFFICIENT_DATA = "INSUFFICIENT_DATA"
+
+class EvaluationMode(str, Enum):
+    PRE_CAT = "PRE_CAT"
+    SCORE_KNOWN = "SCORE_KNOWN"
 
 class FactorScoreTrace(BaseModel):
     factor_name: str = Field(..., description="The name of the factor being evaluated (e.g., 'Class 10', 'Work experience').")
@@ -27,7 +32,10 @@ class CompositeScoreResult(BaseModel):
 class EvaluationResult(BaseModel):
     institute_id: str
     composite_score: float
-    label: CompetitivenessLabel
-    safe_benchmark: Optional[float] = None
-    stretch_benchmark: Optional[float] = None
+    mode: EvaluationMode
+    zone: CompetitivenessLabel
+    user_facing_label: str
+    strengths: str = ""
+    risks: str = ""
+    next_action: str = ""
     factors: List[FactorScoreTrace]
