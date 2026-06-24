@@ -473,43 +473,84 @@ widget_code = """
       }
     }
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      const recognition = new SpeechRecognition();
-      recognition.continuous = false;
-      recognition.interimResults = false;
-      recognition.lang = 'en-IN';
+    let mediaRecorder = null;
+    let audioChunks = [];
 
-      recognition.onstart = () => {
-        micBtn.classList.add('recording');
-      };
-      
-      recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        handleSend(transcript);
-      };
-      
-      recognition.onerror = (event) => {
-        micBtn.classList.remove('recording');
-      };
-      
-      recognition.onend = () => {
-        micBtn.classList.remove('recording');
-      };
+    async function initMediaRecorder() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) {
+            audioChunks.push(event.data);
+          }
+        };
 
-      micBtn.addEventListener('click', () => {
-        if (micBtn.classList.contains('recording')) {
-          recognition.stop();
-        } else {
-          if(currentAudio) currentAudio.pause();
-          recognition.start();
-        }
-      });
-    } else {
-      micBtn.addEventListener('click', () => {
-        alert("Your browser doesn't support the Web Speech API. Please type your message.");
-      });
+        mediaRecorder.onstart = () => {
+          audioChunks = [];
+          micBtn.classList.add('recording');
+        };
+
+        mediaRecorder.onstop = async () => {
+          micBtn.classList.remove('recording');
+          const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+          
+          // Send to backend for transcription
+          typingIndicator.style.display = 'block';
+          typingIndicator.textContent = "Listening...";
+          chatBody.scrollTop = chatBody.scrollHeight;
+          
+          const formData = new FormData();
+          formData.append('file', audioBlob, 'recording.webm');
+          
+          try {
+            const res = await fetch('/transcribe', {
+              method: 'POST',
+              body: formData
+            });
+            if (res.ok) {
+              const data = await res.json();
+              if (data.text) {
+                handleSend(data.text);
+              } else {
+                typingIndicator.style.display = 'none';
+              }
+            } else {
+              typingIndicator.style.display = 'none';
+              addSimpleMessage("Sorry, could not transcribe audio.", 'bot');
+            }
+          } catch (err) {
+            typingIndicator.style.display = 'none';
+            console.error(err);
+          }
+        };
+        
+        return true;
+      } catch (err) {
+        console.error("Microphone access denied or error:", err);
+        return false;
+      }
     }
+
+    micBtn.addEventListener('click', async () => {
+      if (currentAudio) currentAudio.pause();
+      
+      if (micBtn.classList.contains('recording')) {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+          mediaRecorder.stop();
+        }
+      } else {
+        if (!mediaRecorder) {
+          const success = await initMediaRecorder();
+          if (!success) {
+            alert("Microphone access is required to use voice input.");
+            return;
+          }
+        }
+        mediaRecorder.start();
+      }
+    });
   })();
 </script>
 <!-- VOICE WIDGET END -->

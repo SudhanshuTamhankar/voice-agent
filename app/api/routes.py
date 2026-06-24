@@ -1,5 +1,5 @@
-from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, ValidationError
+from fastapi import APIRouter, HTTPException, UploadFile, File
 
 from app.services import (
     LLMService, 
@@ -398,3 +398,19 @@ async def generate_tts(request: AskRequest):
     await communicate.save(path)
     
     return FileResponse(path, media_type="audio/mpeg", background=None)
+
+@router.post("/transcribe")
+async def transcribe_audio(file: UploadFile = File(...)):
+    """Transcribes an audio file uploaded from the frontend using Groq Whisper API."""
+    try:
+        audio_data = await file.read()
+        # Groq Whisper requires the file parameter to be a tuple: (filename, file_data)
+        transcription = llm_service.client.audio.transcriptions.create(
+            file=(file.filename, audio_data),
+            model="whisper-large-v3-turbo",
+            response_format="json"
+        )
+        return {"text": transcription.text}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
