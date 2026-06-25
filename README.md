@@ -60,4 +60,4 @@ The backend utilizes a sophisticated multi-agent pipeline to ensure mathematical
 
 ## 📝 License
 
-Proprietary Software - Clymber. All rights reserved.
+Proprietary Software - SudhanshuTamhankar. All rights reserved.
